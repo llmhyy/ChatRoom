@@ -24,7 +24,7 @@ public class MessageBox extends ScrolledComposite {
 		setExpandVertical(true);
 		
 		messageText = new Text(this, SWT.NONE | SWT.H_SCROLL | SWT.V_SCROLL);
-		messageText.setText("to-be sent message");
+		//messageText.setText("to-be sent message");
 		messageText.addKeyListener(new MessageKeyAdapter(messageText));
 		
 		setContent(messageText);

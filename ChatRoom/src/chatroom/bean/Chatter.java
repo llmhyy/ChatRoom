@@ -1,6 +1,13 @@
 package chatroom.bean;
 
-public class Chatter {
+import java.io.Serializable;
+
+public class Chatter implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8254942212660582272L;
+	
 	private String ipAddress;
 	private String nickName;
 
@@ -8,6 +15,10 @@ public class Chatter {
 		super();
 		this.ipAddress = ipAddress;
 		this.nickName = nickName;
+	}
+	
+	public String toString(){
+		return nickName + "@" + ipAddress;
 	}
 
 	public String getIpAddress() {

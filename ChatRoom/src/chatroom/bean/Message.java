@@ -1,8 +1,14 @@
 package chatroom.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Message {
+public class Message implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3297052638608942387L;
+	
 	private Chatter fromChatter;
 	private String content;
 	private Timestamp date;
@@ -12,6 +18,12 @@ public class Message {
 		this.fromChatter = fromChatter;
 		this.content = content;
 		this.date = date;
+	}
+	
+	public String toString(){
+		String chatterString = this.fromChatter.toString();
+		return chatterString + "send at " + date.toString() + "\n"
+				+ content + "\n";
 	}
 
 	public Chatter getFromChatter() {

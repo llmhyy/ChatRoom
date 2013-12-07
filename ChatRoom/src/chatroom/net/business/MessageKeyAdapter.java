@@ -10,6 +10,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Text;
 
+import chatroom.bean.AliveChatterList;
 import chatroom.bean.Chatter;
 import chatroom.bean.Message;
 import chatroom.net.sender.MessageSender;
@@ -45,15 +46,16 @@ public class MessageKeyAdapter implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if(e.keyCode == SWT.CR){
 			
-			for(int i=0; i<Settings.hosts.length; i++){
-				MessageSender sender = new MessageSender(message, Settings.hosts[i]);
+			for(String ipAddr: AliveChatterList.getChatterMap().keySet()){
+				MessageSender sender = new MessageSender(message, ipAddr);
 				Thread t = new Thread(sender);
 				t.start();
+				
 			}
 			
-			this.messageBox.setText("");
 		}
 
+		this.messageBox.setText("");
 	}
 
 	@Override

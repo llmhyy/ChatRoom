@@ -20,7 +20,7 @@ public class ChatArea extends ScrolledComposite {
 		
 		
 		chatText = new StyledText(this, SWT.NONE | SWT.H_SCROLL | SWT.V_SCROLL);
-		chatText.setText("chatting content");
+		//chatText.setText("chatting content");
 		
 		setContent(chatText);
 		layout();

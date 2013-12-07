@@ -1,6 +1,7 @@
 package chatroom.net.sender;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -24,12 +25,15 @@ public class MessageSender implements Runnable{
 		try {
 			Socket socket = new Socket(this.host, Settings.messageListenerPort);
 			
-			PrintWriter pw = new PrintWriter(socket.getOutputStream());
-			
+			/*PrintWriter pw = new PrintWriter(socket.getOutputStream());
 			pw.println(this.message);
 			pw.flush();
+			pw.close();*/
 			
-			pw.close();
+			ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
+			os.writeObject(this.message);
+			os.flush();
+			
 			socket.close();
 			
 		} catch (IOException e) {
