@@ -27,8 +27,13 @@ public class MessageListener implements Runnable{
 	public void run() {
 		try {
 			ServerSocket server = new ServerSocket(Settings.messageListenerPort);
+			
 			while(true){
 				Socket client = server.accept();
+				
+				if(!client.getInetAddress().getHostAddress().equals(server.getInetAddress().getHostAddress())){
+					continue;
+				}
 				
 				//BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 				
@@ -42,6 +47,7 @@ public class MessageListener implements Runnable{
 
 					@Override
 					public void run() {
+						
 						main.getChatArea().getChatText().append(message.toString());
 						
 					}
