@@ -8,7 +8,7 @@ public class Settings {
 	static {
 		hosts = new String[255];
 		for(int i=0; i<255; i++){
-			hosts[i] = "10.131.252." + (i+1); 
+			hosts[i] = "192.168.1." + (i+1); 
 		}
 	}
 	

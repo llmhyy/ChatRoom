@@ -9,9 +9,29 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import chatroom.bean.AliveChatterList;
+import chatroom.net.listener.ActiveChatterTester;
+import chatroom.net.listener.AliveListener;
 
-public class MainFrame {
+
+public class Main {
+	
+	//public static AliveChatterList chatterList = new AliveChatterList();
+	
 	public static void main(String[] args){
+		
+		AliveListener aliveListener = new AliveListener();
+		Thread aliveListeningThread = new Thread(aliveListener);
+		aliveListeningThread.start();
+		
+		ActiveChatterTester activeChatterTester = new ActiveChatterTester();
+		Thread testerThread = new Thread(activeChatterTester);
+		testerThread.start();
+		
+		createUI();
+	}
+	
+	public static void createUI(){
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setSize(600, 500);
