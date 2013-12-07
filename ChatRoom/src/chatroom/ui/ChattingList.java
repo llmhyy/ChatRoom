@@ -29,31 +29,9 @@ public class ChattingList extends ScrolledComposite {
 		
 		tree = new Tree(this, SWT.V_SCROLL);
 		
-		Display.getDefault().syncExec(new Runnable(){
-
-			@Override
-			public void run() {
-				while(true){
-					
-					for(String ipAddr: AliveChatterList.getChatterMap().keySet()){
-						Chatter chatter = AliveChatterList.getChatterMap().get(ipAddr);
-						
-						TreeItem item = new TreeItem(tree, SWT.NONE);
-						item.setText(chatter.getNickName());
-						item.setData(chatter);
-					}
-					
-					try {
-						Thread.sleep(10000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				
-			}
-			
-		});
+		ChatterChecker checker = new ChatterChecker(tree);
+		Thread checkerThread = new Thread(checker);
+		checkerThread.start();
 		
 		setContent(tree);
 		layout();

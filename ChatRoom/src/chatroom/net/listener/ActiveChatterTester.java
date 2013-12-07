@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.rmi.ConnectException;
+import java.net.ConnectException;
 
 import chatroom.bean.AliveChatterList;
 import chatroom.bean.Chatter;
@@ -28,6 +28,10 @@ public class ActiveChatterTester implements Runnable {
 					Chatter chatter = new Chatter(ipAddress, hostName);
 					
 					AliveChatterList.addAliveChatter(chatter);
+					
+					System.out.println("Successfully connect to " + ipAddress);
+					
+					socket.close();
 				} 
 				catch (ConnectException e){
 					Chatter chatter = AliveChatterList.getChatterMap().get(Settings.hosts[i]);
