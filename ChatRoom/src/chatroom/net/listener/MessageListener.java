@@ -12,14 +12,15 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Display;
 
 import chatroom.bean.Message;
+import chatroom.ui.Main;
 import chatroom.util.Settings;
 
 public class MessageListener implements Runnable{
 
-	private StyledText text;
+	private Main main;
 	
-	public MessageListener(StyledText text){
-		this.text = text;
+	public MessageListener(Main main){
+		this.main = main;
 	}
 	
 	@Override
@@ -41,7 +42,7 @@ public class MessageListener implements Runnable{
 
 					@Override
 					public void run() {
-						text.append(message.toString());
+						main.getChatArea().getChatText().append(message.toString());
 						
 					}
 					

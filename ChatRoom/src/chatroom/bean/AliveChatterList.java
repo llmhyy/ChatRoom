@@ -14,6 +14,6 @@ public class AliveChatterList {
 	}
 	
 	public static void removeAliveChatter(Chatter chatter){
-		chatterMap.remove(chatter);
+		chatterMap.remove(chatter.getIpAddress());
 	}
 }

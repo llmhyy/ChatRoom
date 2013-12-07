@@ -35,7 +35,12 @@ public class ActiveChatterTester implements Runnable {
 				} 
 				catch (ConnectException e){
 					Chatter chatter = AliveChatterList.getChatterMap().get(Settings.hosts[i]);
-					AliveChatterList.removeAliveChatter(chatter);
+					if(chatter != null){
+						AliveChatterList.removeAliveChatter(chatter);
+						
+						System.out.println("Lose connection to " + Settings.hosts[i]);
+						
+					}
 				}
 				catch (UnknownHostException e) {
 					// TODO Auto-generated catch block

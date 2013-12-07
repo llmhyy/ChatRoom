@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Shell;
 import chatroom.bean.AliveChatterList;
 import chatroom.net.listener.ActiveChatterTester;
 import chatroom.net.listener.AliveListener;
+import chatroom.net.listener.MessageListener;
 
 
 public class Main {
@@ -22,17 +23,21 @@ public class Main {
 	//public static AliveChatterList chatterList = new AliveChatterList();
 	
 	public static void main(String[] args){
+		Main main = new Main();
+		main.createUI();
 		
 		AliveListener aliveListener = new AliveListener();
 		Thread aliveListeningThread = new Thread(aliveListener);
 		aliveListeningThread.start();
 		
+		MessageListener messageListener = new MessageListener(main);
+		Thread messageListeningTread = new Thread(messageListener);
+		messageListeningTread.start();
+		
 		ActiveChatterTester activeChatterTester = new ActiveChatterTester();
 		Thread testerThread = new Thread(activeChatterTester);
 		testerThread.start();
 		
-		Main main = new Main();
-		main.createUI();
 	}
 	
 	public void createUI(){
