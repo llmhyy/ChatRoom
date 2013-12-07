@@ -31,12 +31,12 @@ public class ChatterChecker implements Runnable {
 					}
 					
 					for (String ipAddr : AliveChatterList.getChatterMap().keySet()) {
-						Chatter chatter = AliveChatterList.getChatterMap().get(
-								ipAddr);
+						Chatter chatter = AliveChatterList.getChatterMap().get(ipAddr);
 						
 						TreeItem item = new TreeItem(tree, SWT.NONE);
 						item.setText(chatter.getNickName());
 						item.setData(chatter);
+						
 					}
 					
 					//tree.redraw();

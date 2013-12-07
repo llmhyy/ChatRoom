@@ -34,20 +34,32 @@ public class PropertyView extends Composite {
 		gridLayout.numColumns = 2;
 		
 		this.setLayout(gridLayout);
-		confirmButton = new Button(this, SWT.NONE);
+		/*confirmButton = new Button(this, SWT.NONE);
 		confirmButton.setText("confirm modification");
-		confirmButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		confirmButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));*/
 		
 		ipLabel = new Label(this, SWT.NONE);
 		ipLabel.setText("IP");
 		ipLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		
 		ipText = new Text(this, SWT.NONE);
-		ipText.setText("10.131.252.131");
+		ipText.setText("");
 		ipText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		
+		nicknameLabel = new Label(this, SWT.NONE);
+		nicknameLabel.setText("Nickname");
+		nicknameLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		
+		nicknameText = new Text(this, SWT.NONE);
+		nicknameText.setText("");
+		nicknameText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		
 		this.main = main;
+	}
+	
+	public void update(String ipAddress, String nickname){
+		this.ipText.setText(ipAddress);
+		this.nicknameText.setText(nickname);
 	}
 
 }

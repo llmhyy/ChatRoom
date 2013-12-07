@@ -19,6 +19,7 @@ public class Settings {
 			// get the property value and print it out
 			String networkSegment = prop.getProperty("network_segment");
 			String chatterNumber = prop.getProperty("chatter_number");
+			String startIndex = prop.getProperty("start_index");
 			String messageListeningPort = prop.getProperty("message_listening_port");
 			String aliveListeningPort = prop.getProperty("active_listening_port");
 			
@@ -27,9 +28,10 @@ public class Settings {
 			
 			String networkPrefix = networkSegment.substring(0, networkSegment.indexOf("*"));
 			int count = Integer.valueOf(chatterNumber);
+			int start = Integer.valueOf(startIndex);
 			hosts = new String[count];
 			for(int i=0; i<count; i++){
-				hosts[i] = networkPrefix + (i+2);
+				hosts[i] = networkPrefix + (i+start);
 			}
 
 		} catch (IOException ex) {
