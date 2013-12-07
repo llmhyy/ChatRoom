@@ -24,7 +24,6 @@ public class Main {
 	
 	public static void main(String[] args){
 		Main main = new Main();
-		main.createUI();
 		
 		AliveListener aliveListener = new AliveListener();
 		Thread aliveListeningThread = new Thread(aliveListener);
@@ -38,6 +37,7 @@ public class Main {
 		Thread testerThread = new Thread(activeChatterTester);
 		testerThread.start();
 		
+		main.createUI();
 	}
 	
 	public void createUI(){
