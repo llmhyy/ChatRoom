@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.TreeItem;
 
 public class PropertyView extends Composite {
 
+	private Main main;
+	
 	private Label ipLabel;
 	private Text ipText;
 	
@@ -24,7 +26,7 @@ public class PropertyView extends Composite {
 	
 	private Button confirmButton;
 
-	public PropertyView(Composite parent, int style) {
+	public PropertyView(Composite parent, int style, Main main) {
 		super(parent, style);
 		// TODO Auto-generated constructor stub
 		
@@ -45,7 +47,7 @@ public class PropertyView extends Composite {
 		ipText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		
 		
-		
+		this.main = main;
 	}
 
 }

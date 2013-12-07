@@ -8,9 +8,10 @@ import org.eclipse.swt.widgets.Composite;
 
 public class ChatArea extends ScrolledComposite {
 
+	private Main main;
 	private StyledText chatText;
 	
-	public ChatArea(Composite parent, int style) {
+	public ChatArea(Composite parent, int style, Main main) {
 		// TODO Auto-generated constructor stub
 		super(parent, style);
 		
@@ -24,6 +25,14 @@ public class ChatArea extends ScrolledComposite {
 		
 		setContent(chatText);
 		layout();
+		
+		this.main = main;
 	}
+
+	public StyledText getChatText() {
+		return chatText;
+	}
+	
+	
 
 }

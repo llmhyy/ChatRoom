@@ -15,7 +15,10 @@ import chatroom.net.listener.AliveListener;
 
 
 public class Main {
-	
+	private ChatArea chatArea;
+	private MessageBox messageBox;
+	private ChattingList chattingList;
+	private PropertyView propertyView;
 	//public static AliveChatterList chatterList = new AliveChatterList();
 	
 	public static void main(String[] args){
@@ -28,10 +31,11 @@ public class Main {
 		Thread testerThread = new Thread(activeChatterTester);
 		testerThread.start();
 		
-		createUI();
+		Main main = new Main();
+		main.createUI();
 	}
 	
-	public static void createUI(){
+	public void createUI(){
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setSize(600, 500);
@@ -42,13 +46,13 @@ public class Main {
 		form.setLayout(new FillLayout());
 		
 		SashForm messageForm = new SashForm(form, SWT.VERTICAL);
-		ChatArea chatArea = new ChatArea(messageForm, SWT.BORDER | SWT.H_SCROLL);
-		MessageBox messageBox = new MessageBox(messageForm, SWT.BORDER | SWT.H_SCROLL);
+		chatArea = new ChatArea(messageForm, SWT.BORDER | SWT.H_SCROLL, this);
+		messageBox = new MessageBox(messageForm, SWT.BORDER | SWT.H_SCROLL, this);
 		messageForm.setWeights(new int[]{70, 30});
 		
 		SashForm friendForm = new SashForm(form, SWT.VERTICAL);
-		ChattingList friendList = new ChattingList(friendForm, SWT.BORDER | SWT.H_SCROLL);
-		PropertyView propertyView = new PropertyView(friendForm, SWT.BORDER);
+		chattingList = new ChattingList(friendForm, SWT.BORDER | SWT.H_SCROLL, this);
+		propertyView = new PropertyView(friendForm, SWT.BORDER, this);
 		friendForm.setWeights(new int[]{50, 50});
 		
 		form.setWeights(new int[] {70,30});
@@ -59,4 +63,22 @@ public class Main {
 		}
 		display.dispose ();
 	}
+
+	public ChatArea getChatArea() {
+		return chatArea;
+	}
+
+	public MessageBox getMessageBox() {
+		return messageBox;
+	}
+
+	public ChattingList getChattingList() {
+		return chattingList;
+	}
+
+	public PropertyView getPropertyView() {
+		return propertyView;
+	}
+	
+	
 }

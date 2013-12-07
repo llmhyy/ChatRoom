@@ -22,8 +22,8 @@ public class Message implements Serializable{
 	
 	public String toString(){
 		String chatterString = this.fromChatter.toString();
-		return chatterString + "send at " + date.toString() + "\n"
-				+ content + "\n";
+		return content + "\n" + 
+				"  --" + chatterString + " send at " + date.toString() + "\n";
 	}
 
 	public Chatter getFromChatter() {

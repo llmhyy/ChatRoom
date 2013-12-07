@@ -12,9 +12,10 @@ import chatroom.net.business.MessageKeyAdapter;
 
 public class MessageBox extends ScrolledComposite {
 
+	private Main main;
 	private Text messageText;
 	
-	public MessageBox(Composite parent, int style) {
+	public MessageBox(Composite parent, int style, Main main) {
 		super(parent, style);
 		// TODO Auto-generated constructor stub
 		
@@ -25,10 +26,19 @@ public class MessageBox extends ScrolledComposite {
 		
 		messageText = new Text(this, SWT.NONE | SWT.H_SCROLL | SWT.V_SCROLL);
 		//messageText.setText("to-be sent message");
-		messageText.addKeyListener(new MessageKeyAdapter(messageText));
+		messageText.addKeyListener(new MessageKeyAdapter(messageText, main.getChatArea().getChatText()));
 		
 		setContent(messageText);
 		layout();
 		
+		this.main = main;
+	}
+
+	public Text getMessageText() {
+		return messageText;
+	}
+	
+	public Main getMain(){
+		return this.main;
 	}
 }

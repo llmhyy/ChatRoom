@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Text;
@@ -20,8 +21,9 @@ public class MessageKeyAdapter implements KeyListener {
 
 	private Message message;
 	private Text messageBox;
+	private StyledText text;
 	
-	public MessageKeyAdapter(Text messageBox){
+	public MessageKeyAdapter(Text messageBox, StyledText text){
 		
 		String messageContent = messageBox.getText();
 		
@@ -40,11 +42,14 @@ public class MessageKeyAdapter implements KeyListener {
 		Chatter chatter = new Chatter(ipAddress, hostName);
 		this.message = new Message(chatter, messageContent, new Timestamp(new Date().getTime()));
 		this.messageBox = messageBox;
+		this.text = text;
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.keyCode == SWT.CR){
+			
+			message.setContent(messageBox.getText());
 			
 			for(String ipAddr: AliveChatterList.getChatterMap().keySet()){
 				MessageSender sender = new MessageSender(message, ipAddr);
@@ -53,9 +58,10 @@ public class MessageKeyAdapter implements KeyListener {
 				
 			}
 			
+			this.text.append(message.toString());
+			this.messageBox.setText("");
 		}
 
-		this.messageBox.setText("");
 	}
 
 	@Override

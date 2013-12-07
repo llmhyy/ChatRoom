@@ -15,10 +15,10 @@ import chatroom.bean.Chatter;
 
 public class ChattingList extends ScrolledComposite {
 
-	
+	private Main main;
 	private Tree tree;
 	
-	public ChattingList(Composite parent, int style) {
+	public ChattingList(Composite parent, int style, Main main) {
 		super(parent, style);
 		// TODO Auto-generated constructor stub
 		
@@ -35,6 +35,8 @@ public class ChattingList extends ScrolledComposite {
 		
 		setContent(tree);
 		layout();
+		
+		this.main = main;
 	}
 
 }
