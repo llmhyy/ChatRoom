@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -31,7 +32,7 @@ public class MessageListener implements Runnable{
 			while(true){
 				Socket client = server.accept();
 				
-				if(!client.getInetAddress().getHostAddress().equals(server.getInetAddress().getHostAddress())){
+				if(client.getInetAddress().getHostAddress().equals(InetAddress.getLocalHost().getHostAddress())){
 					continue;
 				}
 				
