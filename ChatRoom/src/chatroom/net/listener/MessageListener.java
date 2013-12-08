@@ -32,7 +32,7 @@ public class MessageListener implements Runnable{
 			while(true){
 				Socket client = server.accept();
 
-				if(client.getInetAddress().getHostAddress().equals(server.getInetAddress().getHostAddress())){
+				if(client.getInetAddress().getHostAddress().equals(InetAddress.getLocalHost().getHostAddress())){
 					continue;
 				}
 				
