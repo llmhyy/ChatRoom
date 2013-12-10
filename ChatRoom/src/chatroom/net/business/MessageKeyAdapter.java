@@ -19,13 +19,15 @@ import chatroom.util.Settings;
 
 public class MessageKeyAdapter implements KeyListener {
 
-	private Message message;
+	//private Message message;
+	private Chatter chatter;
+	private String messageContent;
 	private Text messageBox;
 	private StyledText text;
 	
 	public MessageKeyAdapter(Text messageBox, StyledText text){
 		
-		String messageContent = messageBox.getText();
+		this.messageContent = messageBox.getText();
 		
 		InetAddress addr;
 		String ipAddress = "";
@@ -39,8 +41,8 @@ public class MessageKeyAdapter implements KeyListener {
 			e.printStackTrace();
 		}
 		
-		Chatter chatter = new Chatter(ipAddress, hostName);
-		this.message = new Message(chatter, messageContent, new Timestamp(new Date().getTime()));
+		this.chatter = new Chatter(ipAddress, hostName);
+		//this.message = new Message(chatter, messageContent, new Timestamp(new Date().getTime()));
 		this.messageBox = messageBox;
 		this.text = text;
 	}
@@ -48,7 +50,7 @@ public class MessageKeyAdapter implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.keyCode == SWT.CR){
-			
+			Message message = new Message(chatter, messageContent, new Timestamp(new Date().getTime()));
 			message.setContent(messageBox.getText());
 			
 			for(String ipAddr: AliveChatterList.getChatterMap().keySet()){
